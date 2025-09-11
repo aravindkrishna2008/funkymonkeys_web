@@ -2,102 +2,63 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="flex flex-col gap-2vw">
+      <div className="flex flex-row gap-[4vw]">
+        <div className="w-[35vw] bg-[#FFDA15] h-[100vh]">
+          <h1 className="dk-prince-frog text-[11vw] leading-[85%] text-[#FFE973] py-[5vw] px-[2.5vw] ">
+            Lynbrook Robotics
+          </h1>
+          <Image
+            src={"/images/monkey.png"}
+            width={4000}
+            height={4000}
+            alt="funky monkey image"
+            className="-mt-[10vw] ml-[5vw] w-[33vw] h-auto"
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="flex flex-col gap-[2vw] w-[55vw]">
+          <div className="flex flex-row">
+            <div className="flex flex-col">
+              <p className="poppins text-[1.875vw] mt-[7vw]">Team 846</p>
+              {/* line */}
+              <div className="w-[10vw] h-[2px] bg-black mt-[0.5vw] mb-[1.5vw] font-medium"></div>
+              <h1 className="dk-prince-frog text-[11vw] leading-[85%] mt-[1vw] ml-[-0.25vw] ">
+                The Funky Monkeys
+              </h1>
+            </div>
+            <Image
+              src={"/images/hero_right.svg"}
+              alt="hero right image"
+              width={4000}
+              height={4000}
+              className="w-[11vw] h-auto unselectable"
+            />
+          </div>
+          <div className="flex flex-row gap-[2vw]">
+            <Image
+              src={"/images/hero_left.svg"}
+              alt="hero left image"
+              width={4000}
+              height={4000}
+              className="w-[14.6vw] h-auto unselectable"
+            />
+            <div className="flex flex-col gap-[1.875vw] align-top justify-start">
+              <p className="poppins text-[1.875vw] leading-[106%] w-[40vw]">
+                A robotics team located at San Jose, empowering future
+                generations with the tools needed to be an engineer.
+              </p>
+              <div className="flex flex-row">
+                <p className="poppins text-[1.875vw] leading-[106%] font-bold px-[4vw] rounded-full py-[1vw] text-[#806D0B] bg-[#FFDA15] cursor-pointer hover:translate-y-[-4px] hover:shadow-[0_4px_6px_rgba(0,0,0,0.1)] transition-all duration-300 ease-in-out">
+                  Robots &#62;
+                </p>
+                <p className="poppins text-[1.875vw] leading-[106%] font-bold px-[2vw] rounded-full py-[1vw] text-[#808080] cursor-pointer hover:translate-y-[-2px] transition-all duration-300 ease-in-out">
+                  Officers &#62;
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
