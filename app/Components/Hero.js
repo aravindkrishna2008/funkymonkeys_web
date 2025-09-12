@@ -15,7 +15,7 @@ const Hero = () => {
           className="-mt-[10vw] ml-[5vw] w-[33vw] h-auto"
         />
       </div>
-      <div className="flex flex-col gap-[2vw] justify-between w-[62vw] h-[100%] ">
+      <div className="flex flex-col gap-[2vw] justify-between w-[62vw]">
         <div className="flex flex-col ml-[4vw] gap-[2vw]">
           <div className="flex flex-row">
             <div className="flex flex-col">
@@ -60,7 +60,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <div className="w-[66.7vw] mt-auto bg-[#FFF7AB] -z-10 flex flex-row justify-between items-center px-[3.5vw] py-[1vw]">
+        <div className="w-[66vw] mt-auto bg-[#FFF7AB] -z-10 flex flex-row justify-between items-center px-[3.5vw] py-[1vw]">
           <div className="flex flex-col items-center">
             <h1 className="dk-prince-frog text-[100px] text-[#333122] leading-[85%]">
               10+
@@ -68,14 +68,15 @@ const Hero = () => {
             <p className="text-[#333122] font-medium -mt-2">Awards Won</p>
           </div>
           {/* verticle line with 50% of heigth */}
-          <div className="w-[4px] h-[60%] bg-[#333122] z-100" />
+          <div className="w-[2px] h-[60px] bg-[#333122] z-100 opacity-20" />
+
           <div className="flex flex-col items-center">
             <h1 className="dk-prince-frog text-[100px] text-[#333122] leading-[85%]">
               50+
             </h1>
             <p className="text-[#333122] font-medium -mt-2">Members</p>
           </div>
-          <div className="w-[4px] h-[60%] bg-[#333122]" />
+          <div className="w-[2px] h-[60px] bg-[#333122] z-100 opacity-20" />
           <div className="flex flex-col items-center">
             <h1 className="dk-prince-frog text-[100px] text-[#333122] leading-[85%]">
               1k+
