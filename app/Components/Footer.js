@@ -1,80 +1,139 @@
 import Image from "next/image";
+import { motion } from "framer-motion";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 1.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
 
 const Footer = () => {
   return (
-    <div className="bg-[#FFDA15] text-black px-[4vw] py-[3vw]">
-      <div className="flex flex-row justify-between items-center">
-        <div className="flex flex-col">
-          <h2 className="dk-prince-frog text-[3vw] mb-[1vw]">
+    <motion.div
+      className="bg-[#FFDA15] text-black px-[4vw] py-[3vw]"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.div
+        className="flex flex-row justify-between items-center"
+        variants={itemVariants}
+      >
+        <motion.div className="flex flex-col" variants={itemVariants}>
+          <motion.h2
+            className="dk-prince-frog text-[3vw] mb-[1vw]"
+            variants={itemVariants}
+          >
             The Funky Monkeys
-          </h2>
-          <p className="poppins text-[1.2vw] w-[30vw]">
+          </motion.h2>
+          <motion.p
+            className="poppins text-[1.2vw] w-[30vw]"
+            variants={itemVariants}
+          >
             Team 846 - Empowering future engineers through robotics and
             innovation.
-          </p>
-        </div>
-        <div className="flex flex-col">
-          <h3 className="poppins text-[1.5vw] font-bold mb-[1vw]">
+          </motion.p>
+        </motion.div>
+        <motion.div className="flex flex-col" variants={itemVariants}>
+          <motion.h3
+            className="poppins text-[1.5vw] font-bold mb-[1vw]"
+            variants={itemVariants}
+          >
             Quick Links
-          </h3>
-          <a
+          </motion.h3>
+          <motion.a
             href="#"
             className="poppins text-[1.2vw] hover:text-[#333122] transition-colors mb-[0.5vw]"
+            variants={itemVariants}
           >
             Robots
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="#"
             className="poppins text-[1.2vw] hover:text-[#333122] transition-colors mb-[0.5vw]"
+            variants={itemVariants}
           >
             Officers
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="#"
             className="poppins text-[1.2vw] hover:text-[#333122] transition-colors mb-[0.5vw]"
+            variants={itemVariants}
           >
             Events
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="#"
             className="poppins text-[1.2vw] hover:text-[#333122] transition-colors"
+            variants={itemVariants}
           >
             Contact
-          </a>
-        </div>
-        <div className="flex flex-col">
-          <h3 className="poppins text-[1.5vw] font-bold mb-[1vw]">Follow Us</h3>
-          <div className="flex flex-row gap-[1vw]">
-            <Image
-              src="/images/social1.svg"
-              alt="social"
-              width={30}
-              height={30}
-              className="w-[2vw] h-auto cursor-pointer hover:scale-110 transition-transform"
-            />
-            <Image
-              src="/images/social2.svg"
-              alt="social"
-              width={30}
-              height={30}
-              className="w-[2vw] h-auto cursor-pointer hover:scale-110 transition-transform"
-            />
-            <Image
-              src="/images/social3.svg"
-              alt="social"
-              width={30}
-              height={30}
-              className="w-[2vw] h-auto cursor-pointer hover:scale-110 transition-transform"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="border-t border-gray-600 mt-[2vw] pt-[1vw] text-center">
-        <p className="poppins text-[1vw]">
+          </motion.a>
+        </motion.div>
+        <motion.div className="flex flex-col" variants={itemVariants}>
+          <motion.h3
+            className="poppins text-[1.5vw] font-bold mb-[1vw]"
+            variants={itemVariants}
+          >
+            Follow Us
+          </motion.h3>
+          <motion.div
+            className="flex flex-row gap-[1vw]"
+            variants={itemVariants}
+          >
+            <motion.div variants={itemVariants}>
+              <Image
+                src="/images/social1.svg"
+                alt="social"
+                width={30}
+                height={30}
+                className="w-[2vw] h-auto cursor-pointer hover:scale-110 transition-transform"
+              />
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <Image
+                src="/images/social2.svg"
+                alt="social"
+                width={30}
+                height={30}
+                className="w-[2vw] h-auto cursor-pointer hover:scale-110 transition-transform"
+              />
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <Image
+                src="/images/social3.svg"
+                alt="social"
+                width={30}
+                height={30}
+                className="w-[2vw] h-auto cursor-pointer hover:scale-110 transition-transform"
+              />
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+      <motion.div
+        className="border-t border-gray-600 mt-[2vw] pt-[1vw] text-center"
+        variants={itemVariants}
+      >
+        <motion.p className="poppins text-[1vw]" variants={itemVariants}>
           &copy; 2025 The Funky Monkeys. All rights reserved.
-        </p>
-      </div>
-    </div>
+        </motion.p>
+      </motion.div>
+    </motion.div>
   );
 };
 
