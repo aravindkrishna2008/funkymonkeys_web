@@ -34,7 +34,7 @@ const Hero = () => {
         variants={itemVariants}
       >
         <motion.h1
-          className="dk-prince-frog text-[11vw] leading-[85%] text-[#FFE973] py-[5vw] px-[2.5vw]"
+          className="dk-prince-frog text-[11vw] leading-[85%] text-[#000000] py-[5vw] px-[2.5vw]"
           variants={itemVariants}
         >
           Lynbrook Robotics
@@ -45,7 +45,7 @@ const Hero = () => {
             width={4000}
             height={4000}
             alt="funky monkey image"
-            className="-mt-[10vw] ml-[5vw] w-[33vw] h-auto"
+            className="-mt-[5vw] mb-[1vw] ml-[1.5vw] w-[33vw] h-auto"
           />
         </motion.div>
       </motion.div>
@@ -60,7 +60,7 @@ const Hero = () => {
           <motion.div className="flex flex-row" variants={itemVariants}>
             <motion.div className="flex flex-col" variants={itemVariants}>
               <motion.p
-                className="poppins text-[1.875vw] text-[#666666] mt-[7vw]"
+                className="poppins text-[1.875vw] text-[#666666] mt-[9vw]"
                 variants={itemVariants}
               >
                 Team 846
@@ -82,7 +82,7 @@ const Hero = () => {
               alt="hero right image"
               width={4000}
               height={4000}
-              className="w-[11vw] h-auto unselectable"
+              className="w-[11vw] mt-[13vw] h-auto unselectable"
             />
           </motion.div>
           <motion.div

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const MonkeyBox = () => {
   return (
-    <div className="flex flex-row px-[4vw] py-[5vh]">
+    <div className="flex flex-col md:flex-row px-[4vw] py-[5vh]">
       <Image
         src={"/images/monkeybox.png"}
         alt="monkey box"
@@ -10,8 +10,8 @@ const MonkeyBox = () => {
         height={4000}
         className="w-[60vw] h-auto"
       />
-      <div className="flex flex-col justify-center pl-[3vw] gap-[2vw]">
-        <h1 className="dk-prince-frog text-[7.5vw] leading-[85%]">
+      <div className="flex flex-col justify-center pl-[3vw] gap-[3vw]">
+        <h1 className="dk-prince-frog text-[20vw] mt-4 ml-0 md:text-[7.5vw] leading-[85%]">
           Monkey Box
         </h1>
         <p className="text-[1.8vw]">
