@@ -1,11 +1,11 @@
 "use client"
 import Image from "next/image";
-import Hero from "./Components/Hero";
-import Navbar from "./Components/Navbar";
-import FromStudents from "./Components/FromStudents";
-import MonkeyBox from "./Components/MonkeyBox";
-import Newsletter from "./Components/Newsletter";
-import Footer from "./Components/Footer";
+import Hero from "@/components/home/Hero";
+import Navbar from "@/components/layout/Navbar";
+import FromStudents from "@/components/home/FromStudents";
+import MonkeyBox from "@/components/home/MonkeyBox";
+import Newsletter from "@/components/home/Newsletter";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return (
