@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const containerVariants = {
@@ -55,34 +56,30 @@ const Footer = () => {
           >
             Quick Links
           </motion.h3>
-          <motion.a
-            href="#"
+          <Link
+            href="/robots"
             className="poppins text-[1.2vw] hover:text-[#333122] transition-colors mb-[0.5vw]"
-            variants={itemVariants}
           >
             Robots
-          </motion.a>
-          <motion.a
-            href="#"
+          </Link>
+          <Link
+            href="/officers"
             className="poppins text-[1.2vw] hover:text-[#333122] transition-colors mb-[0.5vw]"
-            variants={itemVariants}
           >
             Officers
-          </motion.a>
-          <motion.a
-            href="#"
+          </Link>
+          <Link
+            href="/events"
             className="poppins text-[1.2vw] hover:text-[#333122] transition-colors mb-[0.5vw]"
-            variants={itemVariants}
           >
             Events
-          </motion.a>
-          <motion.a
-            href="#"
+          </Link>
+          <Link
+            href="/contact"
             className="poppins text-[1.2vw] hover:text-[#333122] transition-colors"
-            variants={itemVariants}
           >
             Contact
-          </motion.a>
+          </Link>
         </motion.div>
         <motion.div className="flex flex-col" variants={itemVariants}>
           <motion.h3
@@ -95,7 +92,7 @@ const Footer = () => {
             className="flex flex-row gap-[1vw]"
             variants={itemVariants}
           >
-            <motion.div variants={itemVariants}>
+            <Link href="https://www.youtube.com/@LynbrookRobotics">
               <Image
                 src="/images/social1.svg"
                 alt="social"
@@ -103,8 +100,8 @@ const Footer = () => {
                 height={30}
                 className="w-[2vw] h-auto cursor-pointer hover:scale-110 transition-transform"
               />
-            </motion.div>
-            <motion.div variants={itemVariants}>
+            </Link>
+            <Link href="https://x.com/team846">
               <Image
                 src="/images/social2.svg"
                 alt="social"
@@ -112,8 +109,8 @@ const Footer = () => {
                 height={30}
                 className="w-[2vw] h-auto cursor-pointer hover:scale-110 transition-transform"
               />
-            </motion.div>
-            <motion.div variants={itemVariants}>
+            </Link>
+            <Link href="https://www.instagram.com/firstteam846/">
               <Image
                 src="/images/social3.svg"
                 alt="social"
@@ -121,7 +118,7 @@ const Footer = () => {
                 height={30}
                 className="w-[2vw] h-auto cursor-pointer hover:scale-110 transition-transform"
               />
-            </motion.div>
+            </Link>
           </motion.div>
         </motion.div>
       </motion.div>

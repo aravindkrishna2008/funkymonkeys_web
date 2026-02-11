@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import { motion, AnimatePresence } from "framer-motion";
 
 // components
 import RobotSlide from "@/components/robot/RobotSlide";
+import Footer from "@/components/layout/Footer";
 
 // data
 import robotsData from "@/data/robots";
@@ -57,6 +58,26 @@ const Robot = () => {
   const [sortBy, setSortBy] = useState("default");
   // selectedYearRange: [min, max] or null for all
   const [selectedYearRange, setSelectedYearRange] = useState(null);
+  const scrollRef = useRef(null);
+  const [showScrollHint, setShowScrollHint] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowScrollHint(false);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: window.innerWidth * 0.6,
+        behavior: "smooth",
+      });
+      // Optionally hide hint immediately on interaction
+      setShowScrollHint(false);
+    }
+  };
 
   // Get unique years for filter
   const years = useMemo(() => {
@@ -96,7 +117,7 @@ const Robot = () => {
   }, [sortBy, selectedYearRange]);
 
   return (
-    <div className="flex flex-col py-[2vw]">
+    <div className="flex flex-col">
       <div className="flex flex-row">
         <div className="flex flex-col">
           <h1 className="text-2xl mt-[6vw] ml-[4vw]">Meet Our</h1>
@@ -177,19 +198,17 @@ const Robot = () => {
                   className="h-full bg-[#FFDA15]"
                   style={{
                     position: "absolute",
-                    left: `${
-                      (((selectedYearRange ? selectedYearRange[0] : minYear) -
-                        minYear) /
-                        (maxYear - minYear || 1)) *
+                    left: `${(((selectedYearRange ? selectedYearRange[0] : minYear) -
+                      minYear) /
+                      (maxYear - minYear || 1)) *
                       100
-                    }%`,
-                    right: `${
-                      100 -
+                      }%`,
+                    right: `${100 -
                       (((selectedYearRange ? selectedYearRange[1] : maxYear) -
                         minYear) /
                         (maxYear - minYear || 1)) *
-                        100
-                    }%`,
+                      100
+                      }%`,
                   }}
                 />
               </div>
@@ -248,18 +267,60 @@ const Robot = () => {
         </div>
       </div>
 
-      <div className="w-full flex flex-row gap-4 pr-8 ml-4 mt-8 overflow-x-scroll scrollbar-hide snap-x snap-mandatory pb-4 min-h-[65vh]">
-        <AnimatePresence mode="popLayout">
-          {filteredAndSortedRobots.map((robot, index) => (
-            <LazyRobotSlide key={robot.name} robot={robot} index={index} />
-          ))}
+      <div className="relative w-full group">
+        {/* Horizontal Scroll Hint (Fades out when hovering or interacting could be added, but keeping it visible as a prompt for now) */}
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+        {/* Horizontal Direction Hint */}
+        <AnimatePresence>
+          {showScrollHint && (
+            <motion.div
+              className="absolute right-8 top-1/2 -translate-y-1/2 z-20 cursor-pointer pointer-events-auto flex flex-col items-center gap-2 text-gray-400"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.5 } }}
+              onClick={scrollRight}
+            >
+              <motion.div
+                animate={{ x: [0, 10, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                className="bg-white/30 backdrop-blur-md shadow-lg border border-white/40 p-3 rounded-full hover:bg-white/50 transition-colors"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </motion.div>
+            </motion.div>
+          )}
         </AnimatePresence>
-        {filteredAndSortedRobots.length === 0 && (
-          <div className="flex items-center justify-center w-full h-[60vh] text-gray-400">
-            No robots found for the selected criteria.
-          </div>
-        )}
+
+        <div
+          ref={scrollRef}
+          className="w-full flex flex-row gap-4 pr-8 ml-4 mt-8 overflow-x-scroll scrollbar-hide snap-x snap-mandatory pb-4 min-h-[65vh]"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredAndSortedRobots.map((robot, index) => (
+              <LazyRobotSlide key={robot.name} robot={robot} index={index} />
+            ))}
+          </AnimatePresence>
+          {filteredAndSortedRobots.length === 0 && (
+            <div className="flex items-center justify-center w-full h-[60vh] text-gray-400">
+              No robots found for the selected criteria.
+            </div>
+          )}
+        </div>
       </div>
+
+      <Footer />
     </div>
   );
 };

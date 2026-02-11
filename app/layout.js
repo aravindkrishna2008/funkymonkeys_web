@@ -1,6 +1,5 @@
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import localFont from "next/font/local";
-
 import "./globals.css";
 
 const dk_frong_prince = localFont({

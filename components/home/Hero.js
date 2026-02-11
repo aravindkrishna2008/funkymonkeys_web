@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -114,13 +115,13 @@ const Hero = () => {
                   className="poppins text-[1.875vw] leading-[106%] font-bold px-[4vw] rounded-full py-[1vw] text-[#806D0B] bg-[#FFDA15] cursor-pointer hover:translate-y-[-4px] hover:shadow-[0_4px_6px_rgba(0,0,0,0.1)] transition-all duration-300 ease-in-out"
                   variants={itemVariants}
                 >
-                  Robots &#62;
+                  <Link href="/robots">Robots &#62;</Link>
                 </motion.p>
                 <motion.p
                   className="poppins text-[1.875vw] leading-[106%] font-bold px-[2vw] rounded-full py-[1vw] text-[#808080] cursor-pointer hover:translate-y-[-2px] transition-all duration-300 ease-in-out"
                   variants={itemVariants}
                 >
-                  Officers &#62;
+                  <Link href="/officers">Officers &#62;</Link>
                 </motion.p>
               </motion.div>
             </motion.div>

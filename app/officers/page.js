@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer"
+
 import OfficerCard from "@/components/officers/OfficerCard";
 import { officers as officers2025 } from "@/data/officers/2025";
 import { officers as officers2026 } from "@/data/officers/2026";
@@ -62,7 +64,7 @@ const Officers = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-[3vw] mt-[4vw] px-[5vw]">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-[3vw] mt-[4vw] px-[5vw] mb-[5vw]">
         {currentOfficers.map((officer, index) => (
           <OfficerCard
             key={index}
@@ -72,6 +74,7 @@ const Officers = () => {
           />
         ))}
       </div>
+      <Footer />
     </div>
   );
 };
