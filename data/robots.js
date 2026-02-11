@@ -1,7 +1,7 @@
 const robots = [
   {
     name: "Monkey D' Luffy",
-    image: "/images/RobotRender25.png",
+    image: "/images/robot_renders/RobotRender25.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -13,7 +13,7 @@ const robots = [
   },
   {
     name: "Uptown Funk",
-    image: "/images/RobotRender24.png",
+    image: "/images/robot_renders/RobotRender24.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -25,7 +25,7 @@ const robots = [
   },
   {
     name: "Cone Kong",
-    image: "/images/RobotRender23.png",
+    image: "/images/robot_renders/RobotRender23.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -37,7 +37,7 @@ const robots = [
   },
   {
     name: "Furious George",
-    image: "/images/RobotRender22.png",
+    image: "/images/robot_renders/RobotRender22.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -49,7 +49,7 @@ const robots = [
   },
   {
     name: "The Droid You're Looking For",
-    image: "/images/RobotRender20.png",
+    image: "/images/robot_renders/RobotRender20.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -61,7 +61,7 @@ const robots = [
   },
   {
     name: "SpaceRex",
-    image: "/images/RobotRender19.png",
+    image: "/images/robot_renders/RobotRender19.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -73,7 +73,7 @@ const robots = [
   },
   {
     name: "Wes",
-    image: "/images/RobotRender18.png",
+    image: "/images/robot_renders/RobotRender18.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -85,7 +85,7 @@ const robots = [
   },
   {
     name: "Punk Monkey",
-    image: "/images/RobotRender17.png",
+    image: "/images/robot_renders/RobotRender17.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -97,7 +97,7 @@ const robots = [
   },
   {
     name: "Monkey Python",
-    image: "/images/RobotRender16.png",
+    image: "/images/robot_renders/RobotRender16.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -109,7 +109,7 @@ const robots = [
   },
   {
     name: "Junky Monkey",
-    image: "/images/RobotRender15.png",
+    image: "/images/robot_renders/RobotRender15.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -121,7 +121,7 @@ const robots = [
   },
   {
     name: "Funk Cannon",
-    image: "/images/RobotRender14.png",
+    image: "/images/robot_renders/RobotRender14.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -133,7 +133,7 @@ const robots = [
   },
   {
     name: "Ultimate Funky Object",
-    image: "/images/RobotRender13.png",
+    image: "/images/robot_renders/RobotRender13.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -145,7 +145,7 @@ const robots = [
   },
   {
     name: "Tail of the Monkey",
-    image: "/images/RobotRender12.png",
+    image: "/images/robot_renders/RobotRender12.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -157,7 +157,7 @@ const robots = [
   },
   {
     name: "Soccer Chipmbot Extreme",
-    image: "/images/RobotRender10.png",
+    image: "/images/robot_renders/RobotRender10.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -169,7 +169,7 @@ const robots = [
   },
   {
     name: "Monkey",
-    image: "/images/RobotRender09.png",
+    image: "/images/robot_renders/RobotRender09.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -181,7 +181,7 @@ const robots = [
   },
   {
     name: "Howler",
-    image: "/images/RobotRender08.png",
+    image: "/images/robot_renders/RobotRender08.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -193,7 +193,7 @@ const robots = [
   },
   {
     name: "SpiderMonkey",
-    image: "/images/RobotRender07.png",
+    image: "/images/robot_renders/RobotRender07.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -205,7 +205,7 @@ const robots = [
   },
   {
     name: "Escargo",
-    image: "/images/RobotRender06.png",
+    image: "/images/robot_renders/RobotRender06.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -217,7 +217,7 @@ const robots = [
   },
   {
     name: "TetraBot",
-    image: "/images/RobotRender05.png",
+    image: "/images/robot_renders/RobotRender05.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -229,7 +229,7 @@ const robots = [
   },
   {
     name: "BikeBot",
-    image: "/images/RobotRender04.png",
+    image: "/images/robot_renders/RobotRender04.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -241,7 +241,7 @@ const robots = [
   },
   {
     name: "2003",
-    image: "/images/RobotRender03.png",
+    image: "/images/robot_renders/RobotRender03.png",
     stats: {
       speed: 3,
       acceleration: 2,
@@ -253,7 +253,7 @@ const robots = [
   },
   {
     name: "2002",
-    image: "/images/RobotRender02.png",
+    image: "/images/robot_renders/RobotRender02.png",
     stats: {
       speed: 3,
       acceleration: 2,
