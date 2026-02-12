@@ -37,7 +37,7 @@ const RobotSlide = ({ robot_name, image, stats }) => {
   ];
 
   return (
-    <div className="bg-white border-8 border-[#FFDA15] rounded-3xl w-[24vw] h-[60vh] p-8 shadow-xl flex flex-col justify-center items-center">
+    <div className="bg-white border-8 border-[#FFDA15] rounded-3xl w-[24vw] min-w-[300px] h-[60vh] p-8 shadow-xl flex flex-col justify-center items-center">
       <div className="relative h-[50%] flex justify-center mb-4">
         <Image
           src="/images/Ellipse 9.png"
@@ -54,7 +54,7 @@ const RobotSlide = ({ robot_name, image, stats }) => {
           className=" z-10 h-4/5 w-auto object-contain"
         />
       </div>
-      <h1 className="text-[3vw] dk-prince-frog mt-[-1vw] font-medium">
+      <h1 className="text-4xl dk-prince-frog mt-[-1vw] font-medium">
         {robot_name}
       </h1>
       <div className=" rounded-2xl mt-2">
