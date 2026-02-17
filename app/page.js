@@ -14,11 +14,11 @@ export default function Home() {
       <Hero />
       <FromStudents />
       <Image
-        src={"/images/zigzag.svg"}
+        src={"/funky_svgs/zigzag.svg"}
         alt="zigzag"
         width={4000}
         height={4000}
-        className="w-[100vw] h-auto mt-[5vw]"
+        className="w-[100vw] h-auto mt-[1vw]"
       />
       <MonkeyBox />
       <Newsletter />

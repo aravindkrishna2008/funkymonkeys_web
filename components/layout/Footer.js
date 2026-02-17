@@ -94,7 +94,7 @@ const Footer = () => {
           >
             <Link href="https://www.youtube.com/@LynbrookRobotics">
               <Image
-                src="/images/social1.svg"
+                src="/icons/social1.svg"
                 alt="social"
                 width={30}
                 height={30}
@@ -103,7 +103,7 @@ const Footer = () => {
             </Link>
             <Link href="https://x.com/team846">
               <Image
-                src="/images/social2.svg"
+                src="/icons/social2.svg"
                 alt="social"
                 width={30}
                 height={30}
@@ -112,7 +112,7 @@ const Footer = () => {
             </Link>
             <Link href="https://www.instagram.com/firstteam846/">
               <Image
-                src="/images/social3.svg"
+                src="/icons/social3.svg"
                 alt="social"
                 width={30}
                 height={30}

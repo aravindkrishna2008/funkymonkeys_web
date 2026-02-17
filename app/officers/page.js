@@ -32,7 +32,7 @@ const Officers = () => {
     <div>
       <div className="flex flex-row">
         <Image
-          src={"/images/hero_right.svg"}
+          src={"/funky_svgs/hero_right.svg"}
           alt="hero right image"
           width={400}
           height={400}
@@ -54,10 +54,11 @@ const Officers = () => {
           <div
             key={year}
             onClick={() => setSelectedYear(year)}
-            className={`cursor-pointer px-6 py-2 flex items-center justify-center text-xl font-medium rounded-full duration-200 hover:-translate-y-1 ${selectedYear === year
-              ? "bg-[#FFDA15]"
-              : "border-[#FFDA15] border-4 hover:scale-105"
-              }`}
+            className={`cursor-pointer px-6 py-2 flex items-center justify-center text-xl font-medium rounded-full duration-200 hover:-translate-y-1 ${
+              selectedYear === year
+                ? "bg-[#FFDA15]"
+                : "border-[#FFDA15] border-4 hover:scale-105"
+            }`}
           >
             {year}
           </div>

@@ -5,14 +5,14 @@ const Newsletter = () => {
     <div className="px-[4vw] py-[5vw]">
       <div className="flex flex-row justify-between items-start w-[100%]">
         <Image
-          src="/images/newsletter_left.svg"
+          src="/funky_svgs/newsletter_left.svg"
           alt="newsletter left"
           width={4000}
           height={4000}
           className="w-[21vw] h-auto"
         />
         <Image
-          src="/images/newsletter_right.svg"
+          src="/funky_svgs/newsletter_right.svg"
           alt="newsletter right"
           width={4000}
           height={4000}

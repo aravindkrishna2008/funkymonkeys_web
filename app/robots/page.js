@@ -128,7 +128,7 @@ const Robot = () => {
         </div>
         {/* titles */}
         <Image
-          src={"/images/hero_right.svg"}
+          src={"/funky_svgs/hero_right.svg"}
           alt="hero right image"
           width={4000}
           height={4000}
@@ -198,17 +198,19 @@ const Robot = () => {
                   className="h-full bg-[#FFDA15]"
                   style={{
                     position: "absolute",
-                    left: `${(((selectedYearRange ? selectedYearRange[0] : minYear) -
-                      minYear) /
-                      (maxYear - minYear || 1)) *
-                      100
-                      }%`,
-                    right: `${100 -
-                      (((selectedYearRange ? selectedYearRange[1] : maxYear) -
+                    left: `${
+                      (((selectedYearRange ? selectedYearRange[0] : minYear) -
                         minYear) /
                         (maxYear - minYear || 1)) *
                       100
-                      }%`,
+                    }%`,
+                    right: `${
+                      100 -
+                      (((selectedYearRange ? selectedYearRange[1] : maxYear) -
+                        minYear) /
+                        (maxYear - minYear || 1)) *
+                        100
+                    }%`,
                   }}
                 />
               </div>
@@ -283,7 +285,11 @@ const Robot = () => {
             >
               <motion.div
                 animate={{ x: [0, 10, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 className="bg-white/30 backdrop-blur-md shadow-lg border border-white/40 p-3 rounded-full hover:bg-white/50 transition-colors"
               >
                 <svg

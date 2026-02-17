@@ -48,7 +48,7 @@ const TestimonialCard = ({ quote, author, showRightDecorator }) => (
       <motion.div variants={itemVariants}>
         <Image
           className="w-[10vw] h-auto"
-          src="/images/from_students_right.svg"
+          src="/funky_svgs/from_students_right.svg"
           alt="quote"
           width={10}
           height={10}
@@ -74,7 +74,7 @@ const FromStudents = () => {
           <motion.div variants={itemVariants}>
             <Image
               className="w-[15vw] h-auto"
-              src="/images/from_students_left.svg"
+              src="/funky_svgs/from_students_left.svg"
               alt="quote"
               width={4000}
               height={4000}
