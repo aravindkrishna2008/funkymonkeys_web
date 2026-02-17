@@ -1,6 +1,7 @@
 //eventually use the google calender api
 
 export const calender = [
+  { id: "event-0", date: "2026-01-30", title: "Work Session", start: "2026-02-28T10:00:00", end: "2026-02-28T21:00:00" },
   { id: "event-1", date: "2026-02-01", title: "Work Session", start: "2026-02-01T10:00:00", end: "2026-02-01T21:00:00" },
   { id: "event-2", date: "2026-02-02", title: "Work Session", start: "2026-02-02T10:00:00", end: "2026-02-02T21:00:00" },
   { id: "event-3", date: "2026-02-03", title: "Work Session", start: "2026-02-03T10:00:00", end: "2026-02-03T21:00:00" },
@@ -31,4 +32,5 @@ export const calender = [
   { id: "event-28", date: "2026-02-27", title: "Work Session", start: "2026-02-27T10:00:00", end: "2026-02-27T21:00:00" },
   { id: "event-29", date: "2026-02-28", title: "Work Session", start: "2026-02-28T10:00:00", end: "2026-02-28T21:00:00" },
   { id: "event-30", date: "2026-02-28", title: "Competition", start: "2026-02-28T10:00:00", end: "2026-02-28T21:00:00" },
+  { id: "event-30", date: "2026-03-01", title: "Competition", start: "2026-02-28T10:00:00", end: "2026-02-28T21:00:00" },
 ];
