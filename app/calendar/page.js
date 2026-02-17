@@ -1,16 +1,12 @@
 'use client'
-import { useState, useMemo, useRef, useEffect } from "react";
-import Image from "next/image"
+import { useState, useMemo, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar"
-import { calender } from "@/data/calender"
-
 
 // function to group events by date
 const groupEventsByDate = (events) => {
   return events.reduce((acc, event) => {
-   
     const [year, month, day] = event.date.split('-').map(Number);
-    const monthIndex = month - 1; 
+    const monthIndex = month - 1;
     
     if (!acc[year]) {
       acc[year] = {};
@@ -26,31 +22,32 @@ const groupEventsByDate = (events) => {
   }, {});
 };
 
-
 const fillMissingDays = (year, month, eventsMap) => {
-  const daysInMonth = new Date(year, month + 1, 0).getDate(); // Get number of days in month
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
   const filledDays = {};
   
   for (let day = 1; day <= daysInMonth; day++) {
     const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-    filledDays[dateString] = eventsMap[dateString] || []; // Use existing events or empty array
+    filledDays[dateString] = eventsMap[dateString] || [];
   }
   
   return filledDays;
 };
 
-
-const getTime = (inp) => {
-  return Number(inp.substring(inp.length-8, inp.length-6)) > 12 ?
-  Number(inp.substring(inp.length-8, inp.length-6))%12 + "pm" : 
-  inp.substring(inp.length-8, inp.length-6) + "am"
+const getTime = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleTimeString('en-US', { 
+    hour: 'numeric', 
+    minute: '2-digit',
+    hour12: true 
+  });
 }
 
 const Day = (props) => {
   return (
     <div className="flex flex-col flex-1 basis-[calc((100%-3rem)/7)] max-w-[calc((100%-3rem)/7)] min-h-[120px] gap-1.25 p-2.5 border-3 border-[#FFDE9E] rounded-xl hover:bg-[#EFF6FF] shadow-[0px_7.5px_0px_-3px_rgba(0,_0,_0,_0.1)]">
       <div className="font-bold text-lg">{props.day_number}</div>
-      <div className="poppins text-[12px] text-wrap gap-2.5">
+      <div className="poppins text-wrap text-[12px] gap-2.5">
         {props.tasks.length > 0 ? (
           props.tasks.map((task, index) => (
             <div key={index} className="text-xs">
@@ -58,7 +55,7 @@ const Day = (props) => {
             </div>
           ))
         ) : (
-          <div className="text-gray-400">No events</div>
+          <div className="text-xs text-gray-400">No events</div>
         )}
       </div>
     </div>
@@ -66,31 +63,60 @@ const Day = (props) => {
 }
 
 const Calender = () => {
-    const [currDate, setCurrDate] = useState(new Date())
+    const [currDate, setCurrDate] = useState(new Date());
+    const [events, setEvents] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const groupedEvents = groupEventsByDate(calender);
+    // Fetch events from Google Calendar API
+    useEffect(() => {
+      const fetchEvents = async () => {
+        setLoading(true);
+        try {
+          // Get first and last day of current month
+          const year = currDate.getFullYear();
+          const month = currDate.getMonth();
+          const timeMin = new Date(year, month, 1).toISOString();
+          const timeMax = new Date(year, month + 1, 0, 23, 59, 59).toISOString();
+
+          const response = await fetch(
+            `/api/calendar?timeMin=${timeMin}&timeMax=${timeMax}`
+          );
+          
+          if (!response.ok) {
+            throw new Error('Failed to fetch events');
+          }
+
+          const data = await response.json();
+          setEvents(data.events);
+          setError(null);
+        } catch (err) {
+          console.error('Error fetching events:', err);
+          setError(err.message);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchEvents();
+    }, [currDate]);
+
+    const groupedEvents = useMemo(() => groupEventsByDate(events), [events]);
     
-    // Use useMemo instead of useState + useEffect for derived state
     const currEvents = useMemo(() => {
       const year = currDate.getFullYear();
       const month = currDate.getMonth();
       const monthEvents = groupedEvents[year]?.[month] || {};
       
-      // Fill missing days
       return fillMissingDays(year, month, monthEvents);
     }, [currDate, groupedEvents]);
 
     const CalenderNav = () => {
       return (
         <div className="flex justify-left items-center py-4 gap-5">
-          <label>
-            <div className="flex rounded-[10px] poppins text-s bg-[#F5F5F5] px-2">
-              {`${currDate.toLocaleString('en-US', { month: 'short' })}  ${currDate.getFullYear()}`}
-              <select>
-                
-              </select>
-            </div>
-          </label>
+          <div className="flex rounded-8px] poppins text-m bg-[#F5F5F5] px-2">
+            {`${currDate.toLocaleString('en-US', { month: 'short' })}  ${currDate.getFullYear()}`}
+          </div>
 
           <button onClick={() => {
             const newDate = new Date(currDate);
@@ -132,18 +158,24 @@ const Calender = () => {
             </div>
 
             <CalenderNav/>
-            <div className="flex flex-wrap gap-2">
-              {Object.entries(currEvents).map(([date, events]) => {
-                const dayNumber = parseInt(date.split('-')[2], 10);
-                return (
-                  <Day
-                    key={date}
-                    day_number={dayNumber}
-                    tasks={events}
-                  />
-                );
-              })}
-            </div>
+
+            {loading && <div className="text-center py-4">Loading events...</div>}
+            {error && <div className="text-center py-4 text-red-500">Error: {error}</div>}
+            
+            {!loading && !error && (
+              <div className="flex flex-wrap gap-2">
+                {Object.entries(currEvents).map(([date, events]) => {
+                  const dayNumber = parseInt(date.split('-')[2], 10);
+                  return (
+                    <Day
+                      key={date}
+                      day_number={dayNumber}
+                      tasks={events}
+                    />
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
     )
