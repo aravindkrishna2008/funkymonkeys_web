@@ -37,24 +37,20 @@ const RobotSlide = ({ robot_name, image, stats }) => {
   ];
 
   return (
+    
     <div className="bg-white border-8 border-[#FFDA15] rounded-3xl w-[24vw] min-w-[300px] h-[60vh] p-8 shadow-xl flex flex-col justify-center items-center">
-      <div className="relative h-[50%] flex justify-center mb-4">
-        <Image
-          src="/images/Ellipse 9.png"
-          width={80}
-          height={80}
-          alt="circle"
-          className="absolute z-0 w-30 h-30 -left-6 top-8 "
-        />
+      <div className="relative h-[50%] flex justify-center items center mb-6">
+        <div className = "absolute w-4/5 h-4/5 max-w-[250px] max-h-[250px] aspect-square rounded-full bg-[#FFDA15] z-0"></div>
         <Image
           src={image}
-          width={300}
-          height={300}
-          alt="robot 1"
-          className=" z-10 h-4/5 w-auto object-contain"
+          width={80}
+          height={80}
+          style = {{width: '50%', height: 'auto', maxWidth: '250px'}}
+          alt={robot_name}
+          className="z-10 object-contain"
         />
       </div>
-      <h1 className="text-4xl dk-prince-frog mt-[-1vw] font-medium">
+      <h1 className="text-4xl dk-prince-frog mt-[4vw] font-medium">
         {robot_name}
       </h1>
       <div className=" rounded-2xl mt-2">
