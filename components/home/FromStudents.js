@@ -23,10 +23,10 @@ const itemVariants = {
 };
 
 const TestimonialCard = ({ quote, author, showRightDecorator }) => (
-  <motion.div className="flex flex-row gap-[0.5vw]" variants={itemVariants}>
+  <motion.div className="flex flex-row gap-[0.5rem]" variants={itemVariants}>
     <motion.div variants={itemVariants}>
       <Image
-        className="w-[3vw] h-[3.2vw]"
+        className="w-[2.75rem] h-[2.875rem]"
         src="/images/quote.png"
         alt="quote"
         width={10}
@@ -35,19 +35,19 @@ const TestimonialCard = ({ quote, author, showRightDecorator }) => (
     </motion.div>
     <motion.div className="flex flex-col" variants={itemVariants}>
       <motion.p
-        className="w-[48vw] poppins text-[1.8vw] leading-[150%]"
+        className="max-w-[43.25rem] poppins text-[1.625rem] leading-[150%]"
         variants={itemVariants}
       >
         {quote}
       </motion.p>
-      <motion.p className="text-[1.25vw]" variants={itemVariants}>
+      <motion.p className="text-[1.125rem]" variants={itemVariants}>
         - {author}
       </motion.p>
     </motion.div>
     {showRightDecorator && (
       <motion.div variants={itemVariants}>
         <Image
-          className="w-[10vw] h-auto"
+          className="w-[9rem] h-auto"
           src="/funky_svgs/from_students_right.svg"
           alt="quote"
           width={10}
@@ -61,19 +61,19 @@ const TestimonialCard = ({ quote, author, showRightDecorator }) => (
 const FromStudents = () => {
   return (
     <motion.div
-      className="pl-[4vw] flex flex-row justify-between"
+      className="pl-[3.5rem] flex flex-row"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
       <motion.div
-        className="flex flex-col gap-[3vw] py-[5vw]"
+        className="flex flex-col gap-[2.75rem] py-[4.5rem] flex-1 min-w-0"
         variants={itemVariants}
       >
-        <motion.div className="flex flex-row gap-[3vw]" variants={itemVariants}>
+        <motion.div className="flex flex-row gap-[2.75rem]" variants={itemVariants}>
           <motion.div variants={itemVariants}>
             <Image
-              className="w-[15vw] h-auto"
+              className="w-[13.5rem] h-auto"
               src="/funky_svgs/from_students_left.svg"
               alt="quote"
               width={4000}
@@ -81,7 +81,7 @@ const FromStudents = () => {
             />
           </motion.div>
           <motion.h1
-            className="text-[7.5vw] dk-prince-frog"
+            className="text-[6.75rem] dk-prince-frog"
             variants={itemVariants}
           >
             From Students
@@ -96,9 +96,9 @@ const FromStudents = () => {
           />
         ))}
       </motion.div>
-      <motion.div variants={itemVariants}>
+      <motion.div className="flex-shrink-0 self-stretch" variants={itemVariants}>
         <Image
-          className="w-[32.3vw] h-auto object-cover"
+          className="w-[29rem] h-full object-cover"
           src="/images/fromstudents.jpg"
           alt="quote"
           width={4000}

@@ -2,11 +2,11 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <div className="flex flex-row justify-between items-center absolute right-[3.5vw] top-[2.5vw] z-50">
+    <div className="flex flex-row justify-between items-center absolute right-[3.5rem] top-[2.5rem] z-50">
       <div></div>
-      <div className="flex flex-row space-x-4 transition-all duration-300 ease-in-out text-[1.25vw] items-start">
+      <div className="flex flex-row space-x-4 transition-all duration-300 ease-in-out text-[1.125rem] items-start">
         <div className="relative group">
-          <Link href="#" className="hover:underline text-[1.5vw]">
+          <Link href="#" className="hover:underline text-[1.375rem]">
             MONKEY HUB
           </Link>
           <div className="absolute left-1/2 transform -translate-x-1/2 pt-4 hidden group-hover:block w-max">
@@ -33,7 +33,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="relative group">
-          <Link href="#" className=" hover:underline text-[1.5vw]">
+          <Link href="#" className="hover:underline text-[1.375rem]">
             FUNKY CORNER
           </Link>
           <div className="absolute left-1/2 transform -translate-x-1/2 pt-4 hidden group-hover:block w-max">
@@ -59,7 +59,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <Link href="#" className=" hover:underline text-[1.5vw]">
+        <Link href="#" className="hover:underline text-[1.375rem]">
           SCOUTING
         </Link>
       </div>

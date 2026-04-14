@@ -6,7 +6,6 @@ import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer"
 
-import OfficerCard from "@/components/officers/OfficerCard";
 import { officers as officers2025 } from "@/data/officers/2025";
 import { officers as officers2026 } from "@/data/officers/2026";
 import { officers as officers2024 } from "@/data/officers/2024";
@@ -65,15 +64,35 @@ const Officers = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-[3vw] mt-[4vw] px-[5vw] mb-[5vw]">
-        {currentOfficers.map((officer, index) => (
-          <OfficerCard
-            key={index}
-            name={officer.name}
-            position={officer.position}
-            image={officer.image} // Assuming there might be an image field, otherwise it will just be undefined which is fine
-          />
-        ))}
+      <div className="mt-[4vw] px-[5vw] mb-[5vw] grid grid-cols-1 md:grid-cols-2 gap-8">
+        {[0, 1].map((columnIndex) => {
+          const half = Math.ceil(currentOfficers.length / 2);
+          const columnOfficers = columnIndex === 0
+            ? currentOfficers.slice(0, half)
+            : currentOfficers.slice(half);
+
+          return (
+            <table key={columnIndex} className="w-full border-collapse">
+              <thead>
+                <tr className="border-b-2 border-[#FFDA15]">
+                  <th className="text-left py-3 px-4 font-semibold text-lg">Name</th>
+                  <th className="text-left py-3 px-4 font-semibold text-lg">Position</th>
+                </tr>
+              </thead>
+              <tbody>
+                {columnOfficers.map((officer, index) => (
+                  <tr
+                    key={index}
+                    className="border-b border-gray-200 hover:bg-[#FFDA15]/10 transition-colors"
+                  >
+                    <td className="py-3 px-4">{officer.name}</td>
+                    <td className="py-3 px-4 text-gray-600">{officer.position}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          );
+        })}
       </div>
       <Footer />
     </div>
