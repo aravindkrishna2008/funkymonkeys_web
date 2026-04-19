@@ -40,21 +40,22 @@ const getTime = (dateString) => {
   });
 };
 
+const getMondayIndex = (date) => {
+  const day = new Date(date).getDay();
+  return (day + 6) % 7; 
+};
 
-
-const Day = ({ day_number, tasks }) => {
+const Day = ({ day_number, tasks, onClick, isSelected }) => {
   return (
-    <div className="
-      flex flex-col
-      min-h-[110px]
-      p-3
-      border-2 border-[#FFDE9E]
-      rounded-xl
-      shadow-md
-      bg-white
-      hover:bg-[#EFF6FF]
-      transition
-    ">
+    <div
+      onClick={onClick}
+      className={`
+        flex flex-col aspect-square p-3
+        border-2 border-amber-300 rounded-xl shadow-md cursor-pointer
+        transition
+        ${isSelected ? "bg-[#FFDE9E]" : "bg-white hover:bg-[#EFF6FF]"}
+      `}
+    >
       <div className="font-bold text-lg mb-2">
         {day_number}
       </div>
@@ -63,7 +64,7 @@ const Day = ({ day_number, tasks }) => {
         {tasks.length > 0 ? (
           tasks.map((task, index) => (
             <div key={index}>
-              {task.title} – {getTime(task.start)}
+              {formatTimeRange(task.start, task.end)} {task.title}
             </div>
           ))
         ) : (
@@ -73,8 +74,18 @@ const Day = ({ day_number, tasks }) => {
     </div>
   );
 };
-
-
+const formatTimeRange = (start,end) => {
+  const startDate = new Date(start);
+  const endDate = new Date(end);
+  const options = {
+    hour: "numeric", 
+    minute: "2-digit",
+    hour12: true,
+  };
+  const startStr = startDate.toLocaleTimeString("en-US", options);
+  const endStr = startDate.toLocaleTimeString("en-US", options);
+  return `${startStr} - ${endStr}`
+}
 
 const Calender = () => {
   const [currDate, setCurrDate] = useState(new Date());
@@ -130,7 +141,7 @@ const Calender = () => {
 
   const CalenderNav = () => {
     return (
-      <div className="flex items-center justify-between py-4">
+      <div className="flex items-center justify-end gap-3 py-4">
 
         <button
           onClick={() => {
@@ -138,9 +149,9 @@ const Calender = () => {
             newDate.setMonth(newDate.getMonth() - 1);
             setCurrDate(newDate);
           }}
-          className="p-2 hover:bg-gray-100 rounded-lg"
+          className="p-2 rounded-full hover:bg-gray-100"
         >
-          ←
+          &lt;
         </button>
 
         <div className="text-sm sm:text-base bg-[#F5F5F5] px-4 py-1 rounded-lg font-medium">
@@ -153,9 +164,9 @@ const Calender = () => {
             newDate.setMonth(newDate.getMonth() + 1);
             setCurrDate(newDate);
           }}
-          className="p-2 hover:bg-gray-100 rounded-lg"
+          className="p-2 rounded-full hover:bg-gray-100"
         >
-          →
+        &gt;
         </button>
 
       </div>
