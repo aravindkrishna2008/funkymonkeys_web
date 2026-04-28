@@ -9,10 +9,10 @@ const MonkeyBox = () => {
           alt="monkey box"
           width={4000}
           height={4000}
-          className="w-full h-auto"
+          className="w-[50vw] h-auto"
         />
       </div>
-      <div className="flex flex-col justify-center pl-[2.75rem] gap-[2.75rem] flex-shrink-0">
+      <div className="flex flex-col justify-center pl-[2.75rem] gap-[2.75rem] flex-1">
         <h1 className="dk-prince-frog text-[6.75rem] mt-4 ml-0 leading-[85%]">
           Monkey Box
         </h1>

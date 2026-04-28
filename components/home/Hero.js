@@ -42,7 +42,7 @@ const Hero = () => {
         </motion.h1>
         <motion.div variants={itemVariants}>
           <Image
-            src={"/images/monkey.png"}
+            src={"/monkey.png"}
             width={4000}
             height={4000}
             alt="funky monkey image"
