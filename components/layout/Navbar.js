@@ -59,9 +59,9 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <Link href="#" className="hover:underline text-[1.375rem]">
+        <a href="https://monkeyscout.vercel.app/" className="hover:underline text-[1.375rem]">
           SCOUTING
-        </Link>
+        </a>
       </div>
     </div>
   );
