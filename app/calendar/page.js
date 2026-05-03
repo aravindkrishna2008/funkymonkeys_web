@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
-
+import Image from "next/image";
 
 
 const groupEventsByDate = (events) => {
@@ -45,16 +45,28 @@ const getMondayIndex = (date) => {
   return (day + 6) % 7; 
 };
 
-const Day = ({ day_number, tasks, onClick, isSelected }) => {
+const isToday = (dateString) => {
+  const today = new Date();
+
+  const formattedToday = `${today.getFullYear()}-${String(
+    today.getMonth() + 1
+  ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+
+  return dateString === formattedToday;
+};
+const Day = ({ day_number, tasks, date, onClick, isSelected }) => {
   return (
     <div
       onClick={onClick}
-      className={`
-        flex flex-col aspect-square p-3
-        border-2 border-amber-300 rounded-xl shadow-md cursor-pointer
-        transition
-        ${isSelected ? "bg-[#FFDE9E]" : "bg-white hover:bg-[#EFF6FF]"}
-      `}
+      className={`flex flex-col aspect-square p-3 border-2 rounded-xl shadow-md cursor-pointer transition
+      ${
+        isToday(date)
+          ? "bg-yellow-100 border-yellow-400"   
+          : isSelected
+          ? "bg-[#FFDE9E]"
+          : "bg-white border-amber-300 hover:bg-[#EFF6FF]"
+      }
+    `}
     >
       <div className="font-bold text-lg mb-2">
         {day_number}
@@ -180,25 +192,18 @@ const Calender = () => {
       <Navbar />
 
       <div className="flex flex-col px-4 sm:px-8 py-8">
-
-        
-        <svg
-          viewBox="0 0 255 123"
-          className="w-full max-w-[255px] h-auto mb-4"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect x="255" width="13.2734" height="255" transform="rotate(90 255 0)" fill="#FFDA15"/>
-          <rect x="14.2192" y="13.2734" width="109.727" height="14.2193" transform="rotate(90 14.2192 13.2734)" fill="#FFDA15"/>
-          <circle cx="74.2937" cy="65.259" r="25" fill="#FFDA15"/>
-          <circle cx="148.293" cy="65.259" r="25" fill="#FFDA15"/>
-          <circle cx="222.293" cy="65.259" r="25" fill="#FFDA15"/>
-        </svg>
-
-        <div className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4">
+      <div className="flex flex-row items-center justify-start gap-4">
+        <h1 className="text-[11vw] dk-prince-frog mt-[-1vw] ml-[4vw]">
           Calendar
-        </div>
-
+        </h1>
+        <Image
+          src={"/images/CalendarRight.svg"}
+          alt="hero right image"
+          width={4000}
+          height={4000}
+          className="w-[10vw] h-auto mt-[0vw] unselectable"
+        />
+      </div>
         <CalenderNav />
 
         {loading && <div className="text-center py-4">Loading events...</div>}
@@ -221,6 +226,7 @@ const Calender = () => {
                   key={date}
                   day_number={dayNumber}
                   tasks={events}
+                  date ={date}
                 />
               );
             })}
