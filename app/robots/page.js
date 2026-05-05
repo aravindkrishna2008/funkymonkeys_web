@@ -102,17 +102,6 @@ const Robot = () => {
         return !isNaN(y) && y >= start && y <= end;
       });
     }
-
-    // Sort
-    if (sortBy !== "default") {
-      result.sort((a, b) => {
-        // Handle potentially missing stats safely
-        const statA = a.stats?.[sortBy] || 0;
-        const statB = b.stats?.[sortBy] || 0;
-        return statB - statA; // Descending
-      });
-    }
-
     return result;
   }, [sortBy, selectedYearRange]);
 
@@ -140,22 +129,6 @@ const Robot = () => {
       {/* Controls */}
       <div className="flex flex-col ml-4 mt-8 gap-4 px-4 sticky left-0">
         <div className="flex flex-wrap gap-4 items-center">
-          <div className="flex items-center gap-2 p-2">
-            <span className="text-sm font-medium ml-2 text-gray-600">
-              Sort by:
-            </span>
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="p-2 rounded-lg bg-gray-50 border-none outline-none text-sm font-medium cursor-pointer hover:bg-gray-100 transition-colors"
-            >
-              <option value="default">Default</option>
-              <option value="speed">Speed</option>
-              <option value="acceleration">Acceleration</option>
-              <option value="opr">OPR</option>
-            </select>
-          </div>
-
           <style>{`
             .range-slider-thumb::-webkit-slider-thumb {
               pointer-events: auto;
@@ -198,19 +171,17 @@ const Robot = () => {
                   className="h-full bg-[#FFDA15]"
                   style={{
                     position: "absolute",
-                    left: `${
-                      (((selectedYearRange ? selectedYearRange[0] : minYear) -
-                        minYear) /
-                        (maxYear - minYear || 1)) *
+                    left: `${(((selectedYearRange ? selectedYearRange[0] : minYear) -
+                      minYear) /
+                      (maxYear - minYear || 1)) *
                       100
-                    }%`,
-                    right: `${
-                      100 -
+                      }%`,
+                    right: `${100 -
                       (((selectedYearRange ? selectedYearRange[1] : maxYear) -
                         minYear) /
                         (maxYear - minYear || 1)) *
-                        100
-                    }%`,
+                      100
+                      }%`,
                   }}
                 />
               </div>
@@ -285,11 +256,7 @@ const Robot = () => {
             >
               <motion.div
                 animate={{ x: [0, 10, 0] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                 className="bg-white/30 backdrop-blur-md shadow-lg border border-white/40 p-3 rounded-full hover:bg-white/50 transition-colors"
               >
                 <svg

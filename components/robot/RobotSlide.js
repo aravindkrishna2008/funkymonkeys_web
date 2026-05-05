@@ -1,78 +1,28 @@
 import Image from "next/image";
 
-const MetricBar = ({ filled }) => {
+const RobotSlide = ({ robot_name, image }) => {
   return (
-    <div
-      className={`w-[12px] h-4 -skew-x-10 ${
-        filled ? "bg-[#FFDA15]" : "bg-[#E0E0E0]"
-      }`}
-    />
-  );
-};
+    <div className="bg-white border-8 border-[#FFDA15] rounded-3xl w-[28vw] min-w-[320px] h-[65vh] p-8 shadow-xl flex flex-col justify-center items-center">
+      
+      {/* Image + Circle */}
+      <div className="relative flex justify-center items-center mb-6">
+        {/* Bigger yellow circle */}
+        <div className="absolute w-[260px] h-[260px] rounded-full bg-[#FFDA15] z-0"></div>
 
-const MetricItem = ({ label, filledCount }) => {
-  return (
-    <div className="flex flex-col items-center gap-1">
-      <p className="text-xs font-medium text-[#333122]">{label}</p>
-      <div className="flex gap-1">
-        {[...Array(5)].map((_, i) => (
-          <MetricBar key={i} filled={i < filledCount} />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const RobotSlide = ({ robot_name, image, stats }) => {
-  const metricsRow1 = [
-    { label: "Speed", filledCount: stats.speed },
-    { label: "Accel.", filledCount: stats.acceleration },
-    { label: "OPR", filledCount: stats.opr },
-  ];
-
-  const metricsRow2 = [
-    { label: "Cycl time", filledCount: stats.cycle_time },
-    { label: "Autos", filledCount: stats.autos },
-    { label: "Overall", filledCount: stats.overall },
-  ];
-
-  return (
-    
-    <div className="bg-white border-8 border-[#FFDA15] rounded-3xl w-[24vw] min-w-[300px] h-[60vh] p-8 shadow-xl flex flex-col justify-center items-center">
-      <div className="relative h-[50%] flex justify-center items center mb-6">
-        <div className = "absolute w-4/5 h-4/5 max-w-[250px] max-h-[250px] aspect-square rounded-full bg-[#FFDA15] z-0"></div>
+        {/* Bigger robot */}
         <Image
           src={image}
-          width={80}
-          height={80}
-          style = {{width: '50%', height: 'auto', maxWidth: '250px'}}
+          width={300}
+          height={300}
           alt={robot_name}
-          className="z-10 object-contain"
+          className="z-10 object-cover w-[220px] h-[220px]"
         />
       </div>
-      <h1 className="text-4xl dk-prince-frog mt-[4vw] font-medium">
+
+      {/* Robot Name */}
+      <h1 className="text-5xl dk-prince-frog mt-4 text-center">
         {robot_name}
       </h1>
-      <div className=" rounded-2xl mt-2">
-        <div className="flex justify-around mb-2 gap-3">
-          {metricsRow1.map((metric) => (
-            <MetricItem
-              key={metric.label}
-              label={metric.label}
-              filledCount={metric.filledCount}
-            />
-          ))}
-        </div>
-        <div className="flex justify-around gap-3">
-          {metricsRow2.map((metric) => (
-            <MetricItem
-              key={metric.label}
-              label={metric.label}
-              filledCount={metric.filledCount}
-            />
-          ))}
-        </div>
-      </div>
     </div>
   );
 };
