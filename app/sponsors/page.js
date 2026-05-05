@@ -7,26 +7,24 @@ const Sponsors = () => {
   return (
     <div className="flex flex-col">
       <div className="flex flex-row">
+        <Image
+          src = "/funky_svgs/sponsor_left.svg"
+          alt = "sponsors_left_imaeg"
+          width ={4000}
+          height={4000}
+          className = "w-[11vw] h-auto mt-[3vw] ml-[3vw] unselectable"
+        />
         <div className="flex flex-col">
-          <h1 className="text-[11vw] dk-prince-frog mt-[5vw] ml-[6vw]">
+          <h1 className="text-[11vw] dk-prince-frog mt-[6vw] ml-[2vw]">
             Sponsors
           </h1>
         </div>
-
-        <Image
-          src={"/images/from_students_right.svg"}
-          alt="sponsors_right_image"
-          width={4000}
-          height={4000}
-          className="w-[11vw] h-auto mt-[7vw] ml-[3w] unselectable"
-        />
-
         <Navbar />
       </div>
 
       <div className="flex justify-center items-center w-full mt-16 px-6 pb-24">
         <Image
-          src="/images/Sponsors.svg" 
+          src="/funky_svgs/Sponsors.svg" 
           alt="Sponsors"
           width={2000}
           height={2000}
