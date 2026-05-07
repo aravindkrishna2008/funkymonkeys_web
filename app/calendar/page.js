@@ -1,6 +1,14 @@
 "use client";
 
-import { useState, useMemo, useEffect, useLayoutEffect, useRef } from "react";
+import {
+  forwardRef,
+  useState,
+  useMemo,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+} from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import Image from "next/image";
 
@@ -175,20 +183,32 @@ const CompactEventIndicators = ({ tasks, date, isSelected }) => {
 
 const Day = ({ day_number, tasks, date, onClick, isSelected, compact }) => {
   return (
-    <div
+    <motion.div
+      layout
       onClick={onClick}
-      className={`relative flex flex-col items-center justify-between aspect-square border-4 cursor-pointer transition ${
+      animate={{
+        borderRadius: isSelected ? "9999px" : "1.5rem",
+        scale: isSelected ? 0.95 : 1,
+      }}
+      whileHover={isSelected ? { scale: 0.95 } : { y: -4 }}
+      transition={{
+        layout: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+        borderRadius: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+        scale: { duration: 0.28, ease: [0.22, 1, 0.36, 1] },
+        y: { duration: 0.22, ease: [0.22, 1, 0.36, 1] },
+      }}
+      className={`relative flex flex-col items-center justify-between aspect-square border-4 cursor-pointer overflow-hidden transform-gpu transition-colors duration-300 ease-out ${
         compact ? "p-1 sm:p-2" : "p-3"
       }
       ${
         isSelected
-          ? "rounded-full bg-gradient-to-b from-[#FFF1CD] to-white border-[#FFDA15] hover:bg-[#FFE86D] hover:border-[#FFE86D] scale-95"
+          ? "bg-gradient-to-b from-[#FFF1CD] to-white border-[#FFDA15] hover:bg-[#FFE86D] hover:border-[#FFE86D]"
           : isToday(date)
-          ? "bg-[#FFDA15] border-[#FFDA15] hover:bg-[#FFE86D] hover:border-[#FFE86D] transition-all hover:-translate-y-1"
-          : "bg-white border-[#FFDA15] hover:border-[#FFE86D] transition-all hover:-translate-y-1"
+          ? "bg-[#FFDA15] border-[#FFDA15] hover:bg-[#FFE86D] hover:border-[#FFE86D]"
+          : "bg-white border-[#FFDA15] hover:border-[#FFE86D]"
       }
-      ${isSelected ? "" : "rounded-3xl"}
     `}
+      style={{ willChange: "transform, border-radius" }}
     >
       {compact && !isSelected && (
         <CompactEventIndicators
@@ -227,7 +247,7 @@ const Day = ({ day_number, tasks, date, onClick, isSelected, compact }) => {
       >
         {day_number}
       </div>
-    </div>
+    </motion.div>
   );
 };
 const formatTimeRange = (start, end) => {
@@ -317,8 +337,43 @@ const getEventLayout = (event, index) => {
   };
 };
 
-const DayDetail = ({ date, tasks, height }) => {
+const DESKTOP_MEDIA_QUERY = "(min-width: 1024px)";
+
+const dayDetailMotion = {
+  hidden: {
+    opacity: 0,
+    x: -480,
+    scale: 0.98,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+  },
+};
+
+const useIsDesktop = () => {
+  const [isDesktop, setIsDesktop] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia(DESKTOP_MEDIA_QUERY).matches;
+  });
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(DESKTOP_MEDIA_QUERY);
+    const updateIsDesktop = () => setIsDesktop(mediaQuery.matches);
+
+    updateIsDesktop();
+    mediaQuery.addEventListener("change", updateIsDesktop);
+
+    return () => mediaQuery.removeEventListener("change", updateIsDesktop);
+  }, []);
+
+  return isDesktop;
+};
+
+const DayDetail = forwardRef(function DayDetail({ date, tasks, height }, ref) {
   const timelineRef = useRef(null);
+  const isDesktop = useIsDesktop();
   const selectedDate = getDateParts(date);
   const sortedTasks = useMemo(
     () => [...tasks].sort((a, b) => getEventStartTime(a) - getEventStartTime(b)),
@@ -363,7 +418,19 @@ const DayDetail = ({ date, tasks, height }) => {
   }, [date, sortedTasks]);
 
   return (
-    <aside
+    <motion.aside
+      ref={ref}
+      layout
+      variants={dayDetailMotion}
+      initial={isDesktop ? "hidden" : false}
+      animate="visible"
+      exit={isDesktop ? "hidden" : { opacity: 1, x: 0, transition: { duration: 0 } }}
+      transition={{
+        layout: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+        opacity: { duration: 0.22, ease: "easeOut" },
+        scale: { duration: 0.34, ease: [0.22, 1, 0.36, 1] },
+        x: { duration: 0.42, ease: [0.22, 1, 0.36, 1] },
+      }}
       className="w-full lg:w-[450px] shrink-0 border-8 border-[#FFDA15] rounded-[36px] px-5 sm:px-6 py-6 bg-white overflow-hidden flex flex-col"
       style={height ? { height: `${height}px` } : undefined}
     >
@@ -428,9 +495,9 @@ const DayDetail = ({ date, tasks, height }) => {
           </div>
         </div>
       </div>
-    </aside>
+    </motion.aside>
   );
-};
+});
 
 const Calender = () => {
   const [currDate, setCurrDate] = useState(new Date());
@@ -440,6 +507,7 @@ const Calender = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [calendarGridHeight, setCalendarGridHeight] = useState(null);
   const calendarColumnRef = useRef(null);
+  const isCalendarCompact = Boolean(selectedDate);
 
   // Fetch events
   useEffect(() => {
@@ -511,6 +579,12 @@ const Calender = () => {
     return () => resizeObserver.disconnect();
   }, [selectedDate, currEvents]);
 
+  const handleDayClick = (date) => {
+    setSelectedDate((currentDate) => {
+      return currentDate === date ? null : date;
+    });
+  };
+
   const CalenderNav = () => {
     return (
       <div className="flex items-center justify-end gap-3 py-4">
@@ -570,24 +644,36 @@ const Calender = () => {
         )}
 
         {!loading && !error && (
-          <div className="flex flex-col lg:flex-row gap-6 items-start">
-            {selectedDate && (
-              <DayDetail
-                date={selectedDate}
-                tasks={currEvents[selectedDate] || []}
-                height={calendarGridHeight}
-              />
-            )}
+          <motion.div
+            layout
+            className="flex flex-col lg:flex-row gap-6 items-start"
+            transition={{ layout: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } }}
+          >
+            <AnimatePresence initial={false} mode="popLayout">
+              {selectedDate && (
+                <DayDetail
+                  key="calendar-day-detail"
+                  date={selectedDate}
+                  tasks={currEvents[selectedDate] || []}
+                  height={calendarGridHeight}
+                />
+              )}
+            </AnimatePresence>
 
-            <div ref={calendarColumnRef} className="w-full space-y-5">
+            <motion.div
+              layout
+              ref={calendarColumnRef}
+              className="w-full space-y-5"
+              transition={{ layout: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } }}
+            >
               <WeekdayHeaders
-                compact={Boolean(selectedDate)}
+                compact={isCalendarCompact}
                 currentDate={currDate}
               />
 
               <div
                 className={`grid w-full gap-3 ${
-                  selectedDate
+                  isCalendarCompact
                     ? "grid-cols-7 content-start overflow-y-auto pr-2"
                     : "grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7"
                 }`}
@@ -596,7 +682,7 @@ const Calender = () => {
                   <div
                     key={`empty-${index}`}
                     className={`aspect-square ${
-                      selectedDate ? "block" : "hidden lg:block"
+                      isCalendarCompact ? "block" : "hidden lg:block"
                     }`}
                     aria-hidden="true"
                   />
@@ -611,19 +697,15 @@ const Calender = () => {
                       day_number={dayNumber}
                       tasks={events}
                       date={date}
-                      onClick={() =>
-                        setSelectedDate((currentDate) =>
-                          currentDate === date ? null : date,
-                        )
-                      }
+                      onClick={() => handleDayClick(date)}
                       isSelected={selectedDate === date}
-                      compact={Boolean(selectedDate)}
+                      compact={isCalendarCompact}
                     />
                   );
                 })}
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         )}
       </div>
     </div>
