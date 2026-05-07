@@ -1,22 +1,32 @@
 import { google } from 'googleapis';
 import { NextResponse } from 'next/server';
 
+const CACHE_TTL_MS = 5 * 60 * 1000;
+const calendarCache = new Map();
+
 export async function GET(request) {
-  console.log('API Route Hit!');
-  console.log('API Key exists:', !!process.env.GOOGLE_CALENDAR_API_KEY);
-  console.log('Calendar ID:', process.env.GOOGLE_CALENDAR_ID);
-  
   try {
+    const { searchParams } = new URL(request.url);
+    const timeMin = searchParams.get('timeMin') || new Date().toISOString();
+    const timeMax = searchParams.get('timeMax');
+    const cacheKey = `${timeMin}:${timeMax}`;
+    const cached = calendarCache.get(cacheKey);
+
+    if (cached && Date.now() - cached.createdAt < CACHE_TTL_MS) {
+      return NextResponse.json(
+        { events: cached.events },
+        {
+          headers: {
+            'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=3600',
+          },
+        }
+      );
+    }
+
     const calendar = google.calendar({
       version: 'v3',
       auth: process.env.GOOGLE_CALENDAR_API_KEY,
     });
-
-    const { searchParams } = new URL(request.url);
-    const timeMin = searchParams.get('timeMin') || new Date().toISOString();
-    const timeMax = searchParams.get('timeMax');
-
-    console.log('Fetching events from', timeMin, 'to', timeMax);
 
     const response = await calendar.events.list({
       calendarId: process.env.GOOGLE_CALENDAR_ID,
@@ -27,9 +37,7 @@ export async function GET(request) {
       orderBy: 'startTime',
     });
 
-    console.log('Found', response.data.items?.length || 0, 'events');
-
-    const events = response.data.items.map(event => ({
+    const events = (response.data.items || []).map(event => ({
       id: event.id,
       title: event.summary,
       start: event.start.dateTime || event.start.date,
@@ -39,7 +47,19 @@ export async function GET(request) {
       location: event.location || '',
     }));
 
-    return NextResponse.json({ events });
+    calendarCache.set(cacheKey, {
+      createdAt: Date.now(),
+      events,
+    });
+
+    return NextResponse.json(
+      { events },
+      {
+        headers: {
+          'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=3600',
+        },
+      }
+    );
   } catch (error) {
     console.error('Detailed error:', error);
     return NextResponse.json(

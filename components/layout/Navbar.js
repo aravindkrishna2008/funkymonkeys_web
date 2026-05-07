@@ -12,6 +12,12 @@ const Navbar = () => {
           <div className="absolute left-1/2 transform -translate-x-1/2 pt-4 hidden group-hover:block w-max">
             <div className="flex flex-col bg-black/5 backdrop-blur-lg rounded-2xl p-4 space-y-3 text-black/40 shadow-2xl border border-white/10">
               <Link
+                href="/"
+                className="hover:text-gray-800 transition-colors px-2 text-center tracking-wide"
+              >
+                HOME
+              </Link>
+              <Link
                 href="/officers"
                 className="hover:text-gray-800 transition-colors px-2 text-center  tracking-wide"
               >
@@ -59,7 +65,10 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <a href="https://monkeyscout.vercel.app/" className="hover:underline text-[1.375rem]">
+        <a
+          href="https://monkeyscout.vercel.app/"
+          className="hover:underline text-[1.375rem]"
+        >
           SCOUTING
         </a>
       </div>
