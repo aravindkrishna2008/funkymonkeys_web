@@ -278,7 +278,7 @@ const Robot = () => {
 
         <div
           ref={scrollRef}
-          className="w-full flex flex-row gap-4 pr-8 ml-4 mt-8 overflow-x-scroll scrollbar-hide snap-x snap-mandatory pb-4 min-h-[65vh]"
+          className="robot-scrollbar w-full flex flex-row gap-4 pr-8 ml-4 mt-8 overflow-x-auto snap-x snap-mandatory pb-4 min-h-[65vh]"
         >
           <AnimatePresence mode="popLayout">
             {filteredAndSortedRobots.map((robot, index) => (
