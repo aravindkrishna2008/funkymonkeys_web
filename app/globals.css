@@ -32,3 +32,27 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
+.robot-scrollbar {
+  scrollbar-color: #808080#f0f0f0;
+  scrollbar-width: thin;
+  overscroll-behavior-inline: contain;
+}
+
+.robot-scrollbar::-webkit-scrollbar {
+  height: 12px;
+}
+
+.robot-scrollbar::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 999px;
+}
+
+.robot-scrollbar::-webkit-scrollbar-thumb {
+  background: #ffda15;
+  border: 3px solid #f0f0f0;
+  border-radius: 999px;
+}
+
+.robot-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #efc900;
+}
