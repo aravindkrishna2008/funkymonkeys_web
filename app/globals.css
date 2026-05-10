@@ -33,7 +33,7 @@ body {
 }
 
 .robot-scrollbar {
-  scrollbar-color: #ffda15 #f0f0f0;
+  scrollbar-color: #808080#f0f0f0;
   scrollbar-width: thin;
   overscroll-behavior-inline: contain;
 }
@@ -56,4 +56,3 @@ body {
 .robot-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #efc900;
 }
-

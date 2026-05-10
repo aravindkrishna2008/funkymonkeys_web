@@ -2,8 +2,7 @@ import Image from "next/image";
 
 const RobotSlide = ({ robot_name, image }) => {
   return (
-    <div className="bg-white border-8 border-[#FFDA15] rounded-3xl w-[28vw] min-w-[320px] h-[65vh] p-8 shadow-xl flex flex-col justify-center items-center">
-      
+    <div className="bg-white border-8 border-[#FFDA15] rounded-3xl w-[28vw] min-w-[320px] h-[65vh] p-8 shadow-xl flex flex-col justify-center items-center mb-1">
       {/* Image + Circle */}
       <div className="relative flex justify-center items-center mb-6">
         {/* Bigger yellow circle */}
@@ -20,9 +19,7 @@ const RobotSlide = ({ robot_name, image }) => {
       </div>
 
       {/* Robot Name */}
-      <h1 className="text-5xl dk-prince-frog mt-4 text-center">
-        {robot_name}
-      </h1>
+      <h1 className="text-5xl dk-prince-frog mt-4 text-center">{robot_name}</h1>
     </div>
   );
 };
