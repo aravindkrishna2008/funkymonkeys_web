@@ -20,7 +20,7 @@ const robots = robotsData.map((robot) => ({
     : "Unknown",
 }));
 
-const LazyRobotSlide = ({ robot, index }) => {
+const LazyRobotSlide = ({ robot, index, onSelect }) => {
   const [hasLoaded, setHasLoaded] = useState(false);
 
   return (
@@ -46,10 +46,109 @@ const LazyRobotSlide = ({ robot, index }) => {
           robot_name={robot.name}
           image={robot.image}
           stats={robot.stats}
+          onSelect={() => onSelect(robot)}
         />
       ) : (
         <div className="w-[24vw] h-[60vh] bg-gray-100/50 rounded-3xl animate-pulse border-8 border-gray-200" />
       )}
+    </motion.div>
+  );
+};
+
+const RobotDetailModal = ({ robot, onClose }) => {
+  if (!robot) {
+    return null;
+  }
+
+  const detail = robot.details;
+  const detailImages = detail?.images || [];
+  const detailBullets = detail?.bullets || [];
+  const hasDetailText = Boolean(detail?.description && detailBullets.length > 0);
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/45 px-4 py-8"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+    >
+      <motion.div
+        className="relative grid max-h-[92vh] w-full max-w-6xl grid-cols-1 overflow-hidden rounded-2xl bg-white shadow-2xl md:grid-cols-[380px_1fr]"
+        initial={{ opacity: 0, y: 24, scale: 0.96 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 12, scale: 0.98 }}
+        transition={{ type: "spring", bounce: 0.2, duration: 0.35 }}
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-2xl leading-none text-gray-500 shadow hover:text-black"
+          aria-label="Close robot details"
+        >
+          x
+        </button>
+
+        <div className="flex items-center justify-center bg-[#FFDA15] p-10">
+          <Image
+            src={robot.image}
+            width={440}
+            height={440}
+            alt={robot.name}
+            className="max-h-[380px] w-auto object-contain"
+          />
+        </div>
+
+        <div
+          className="max-h-[92vh] overflow-y-auto overscroll-contain p-10"
+          onWheel={(event) => event.stopPropagation()}
+          onTouchMove={(event) => event.stopPropagation()}
+        >
+          <p className="text-sm font-bold uppercase tracking-[0.18em] text-gray-400">
+            {robot.year}
+          </p>
+          <h2 className="dk-prince-frog mt-2 text-7xl leading-none text-gray-950">
+            {robot.name}
+          </h2>
+
+          {hasDetailText && (
+            <div className="mt-8 rounded-xl border border-gray-200 bg-gray-50 p-6">
+              <p className="text-lg leading-8 text-gray-700">
+                {detail.description}
+              </p>
+              <div className="mt-5 space-y-3 border-t border-gray-200 pt-5 text-base leading-7 text-gray-700">
+                {detailBullets.map((section) => (
+                  <p key={section} className="flex gap-3">
+                    <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[#FFDA15]" />
+                    <span>{section}</span>
+                  </p>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {detailImages.length > 0 && (
+            <div className="mt-8 flex flex-col gap-5">
+              {detailImages.map((image) => (
+                <div
+                  key={image}
+                  className="w-full overflow-hidden rounded-lg border border-gray-100 bg-white shadow-sm"
+                >
+                  <Image
+                    src={image}
+                    width={800}
+                    height={600}
+                    alt={`${robot.name} detail`}
+                    className="h-auto w-full object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+
+        </div>
+      </motion.div>
     </motion.div>
   );
 };
@@ -60,6 +159,7 @@ const Robot = () => {
   const [selectedYearRange, setSelectedYearRange] = useState(null);
   const scrollRef = useRef(null);
   const [showScrollHint, setShowScrollHint] = useState(true);
+  const [selectedRobot, setSelectedRobot] = useState(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -67,6 +167,30 @@ const Robot = () => {
     }, 5000);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") {
+        setSelectedRobot(null);
+      }
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, []);
+
+  useEffect(() => {
+    if (!selectedRobot) {
+      return;
+    }
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [selectedRobot]);
 
   const scrollRight = () => {
     if (scrollRef.current) {
@@ -282,7 +406,12 @@ const Robot = () => {
         >
           <AnimatePresence mode="popLayout">
             {filteredAndSortedRobots.map((robot, index) => (
-              <LazyRobotSlide key={robot.name} robot={robot} index={index} />
+              <LazyRobotSlide
+                key={robot.name}
+                robot={robot}
+                index={index}
+                onSelect={setSelectedRobot}
+              />
             ))}
           </AnimatePresence>
           {filteredAndSortedRobots.length === 0 && (
@@ -292,6 +421,15 @@ const Robot = () => {
           )}
         </div>
       </div>
+
+      <AnimatePresence>
+        {selectedRobot && (
+          <RobotDetailModal
+            robot={selectedRobot}
+            onClose={() => setSelectedRobot(null)}
+          />
+        )}
+      </AnimatePresence>
 
       <Footer />
     </div>

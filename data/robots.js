@@ -1,3 +1,197 @@
+const robotDetails = {
+  2025: {
+    sourceTitle: "Reefscape_2025",
+    description: "Supplemental archive includes Reefscape detail images for coral, algae, and drive/climber mechanisms.",
+    bullets: [],
+    images: [
+      "/images/robot_details/2025/coral.webp",
+      "/images/robot_details/2025/algae.webp",
+      "/images/robot_details/2025/driveclimber.webp",
+    ],
+  },
+  2024: {
+    sourceTitle: "PhotoJournal_2024",
+    description: "Supplemental archive currently provides a 2024 season-summary image.",
+    bullets: [],
+    images: ["/images/robot_details/2024/PhotoJournal_2024-page008.jpg"],
+  },
+  2023: {
+    sourceTitle: "PhotoJournal_2023",
+    description: "Supplemental archive currently provides a 2023 season-summary image.",
+    bullets: [],
+    images: ["/images/robot_details/2023/PhotoJournal_2023-page008.jpeg"],
+  },
+  2022: {
+    sourceTitle: "PhotoJournal_2022",
+    description: "Supplemental archive currently provides a 2022 season-summary image.",
+    bullets: [],
+    images: ["/images/robot_details/2022/PhotoJournal_2022-page007.jpg"],
+  },
+  2020: {
+    sourceTitle: "PhotoJournal_2020",
+    description: "Supplemental archive currently provides a 2020 season-summary image.",
+    bullets: [],
+    images: ["/images/robot_details/2020/PhotoJournal_2020-page007.png"],
+  },
+  2019: {
+    sourceTitle: "Deep_Space_Detail_2019",
+    description: "Supplemental archive currently provides a Deep Space season robot detail image.",
+    bullets: [],
+    images: ["/images/robot_details/2019/PJ19Robot-1024x806.jpg"],
+  },
+  2018: {
+    sourceTitle: "Robot_Details_2018",
+    description: "Supplemental archive currently provides a 2018 robot details image.",
+    bullets: [],
+    images: ["/images/robot_details/2018/RobotDetails2018.jpg"],
+  },
+  2017: {
+    sourceTitle: "Steamworks_Robot",
+    description: "Steamworks robot details cover the drivetrain, shooter, collector, gear collector, and climber.",
+    bullets: [
+      "Six-wheel west coast drivetrain with a single-speed gearbox rated up to about 15.5 ft/s.",
+      "Double-sided belt shooter designed to flip between two shooting positions.",
+      "Belt-based collector and elevator move balls from the ground to storage and shooter.",
+      "Gear collector uses pneumatic clamping surfaces and a linear slide.",
+      "Climber uses a rope-capture mechanism with torque limiting and a ratchet.",
+    ],
+    images: [],
+  },
+  2016: {
+    sourceTitle: "Monkey Python",
+    description: "Stronghold robot details cover the collector, drivetrain, shooter, and frame dimensions.",
+    bullets: [
+      "Front collector uses mecanum wheels and rollers to funnel balls.",
+      "Drivetrain was designed to cross a variety of defenses with pneumatic wheels and a curved profile.",
+      "Shooter uses four flywheels and custom PCBs to measure flywheel speed.",
+      "Listed dimensions: 26 in. wide, 47 in. long, 43 in. tall, 92 lbs.",
+    ],
+    images: [],
+  },
+  2015: {
+    sourceTitle: "Junky_Monkey",
+    description: "Recycle Rush robot details cover the collector, drivetrain, arms, elevator, and carriage.",
+    bullets: [
+      "Collector intakes totes and containers into the robot frame.",
+      "Mecanum drivetrain was designed and fabricated by an all-girls subteam.",
+      "Carbon fiber arms were used to pull containers from the center step.",
+      "Elevator and carriage handled stacking and deploying game pieces.",
+    ],
+    images: [],
+  },
+  2014: {
+    sourceTitle: "Funk_Cannon",
+    description: "Aerial Assist robot details cover the drivetrain, collector, shooter, autonomous routine, and dimensions.",
+    bullets: [
+      "Six-wheel drive used a Funky Drive wheel layout with omni and traction wheels.",
+      "Collector used mecanum wheels to funnel the ball to the center intake.",
+      "Spring-powered shooter supported long and short shots.",
+      "Autonomous routine could shoot two balls within 8 seconds.",
+    ],
+    images: [],
+  },
+  2012: {
+    sourceTitle: "Tail_of_the_Monkey",
+    description: "Rebound Rumble robot details cover drivetrain, ball collection, shooter, bridge pusher, and controls.",
+    bullets: [
+      "Six-wheel drivetrain with two-speed transmission.",
+      "Drop-down ball collector and conveyor handled balls across the front of the robot.",
+      "Shooter ran above 5,000 RPM with a two-position hood.",
+      "Bridge pusher wedge inspired the robot name.",
+    ],
+    images: [],
+  },
+  2010: {
+    sourceTitle: "Soccer_Chimpbot_Extreme",
+    description: "Breakaway robot details cover drivetrain, kicker, hanger, control system, and dimensions.",
+    bullets: [
+      "Four-wheel drivetrain with AndyMark Supershifter gearboxes.",
+      "Kicker used torsion springs and could kick the ball about 20 feet.",
+      "Four-stage lifting arm and winch supported hanging.",
+      "Listed weight: 100 lb; height: 36 inches.",
+    ],
+    images: [],
+  },
+  2009: {
+    sourceTitle: "Moonkey",
+    description: "Lunacy robot details cover the ball intake, shooter, frame, sensors, and name origin.",
+    bullets: [
+      "Ball intake used CIM, RS-545, and FP motors with ABS rollers and urethane belts.",
+      "Backspin shooter launched two balls at a time.",
+      "Frame used angled rear corners and a wide low hopper.",
+      "Archive name is Moonkey; current website display name remains the source of truth.",
+    ],
+    images: [],
+  },
+  2008: {
+    sourceTitle: "Howler",
+    description: "Overdrive robot details cover drivetrain, ball handling, capabilities, sensors, and name origin.",
+    bullets: [
+      "Drivetrain used a wide road-hog layout with standard and omni wheels.",
+      "Lift and fork mechanism used a vacuum cup to grip the trackball.",
+      "Could hurdle, pick up, grab, and place the trackball.",
+      "The name references a loud howler-style vacuum mechanism.",
+    ],
+    images: [],
+  },
+  2007: {
+    sourceTitle: "Spidermonkey",
+    description: "Rack 'n Roll robot details cover drivetrain, ringer handling, autonomous, ramps, and sensors.",
+    bullets: [
+      "Six-wheel center-dropped drivetrain with selectable arcade or tank steering.",
+      "Three-stage lift and pneumatic claw handled ringers.",
+      "Autonomous could score a keeper.",
+      "Foldout ramps supported endgame bonus points.",
+    ],
+    images: [],
+  },
+  2006: {
+    sourceTitle: "Escargo",
+    description: "Aim High robot details cover drivetrain, ball handling, ramp capability, sensors, and turret features.",
+    bullets: [
+      "Six-wheel center-dropped drivetrain with two-speed transmission.",
+      "Front and back ball pickups fed conveyor belts.",
+      "Rotating turret shot balls into the upper goal.",
+      "Camera and sensors helped track the goal and control shooter speed.",
+    ],
+    images: [],
+  },
+  2005: {
+    sourceTitle: "Tetrabot",
+    description: "Triple Play robot details cover drivetrain, autonomous, sensors, arm control, and name origin.",
+    bullets: [
+      "Six-wheel drivetrain with raised front and rear wheels for turning.",
+      "Autonomous could knock down and move tetras.",
+      "Operator interface mirrored the robot arm.",
+      "The name comes from the game's tetra pieces.",
+    ],
+    images: [],
+  },
+  2004: {
+    sourceTitle: "Bikebot",
+    description: "FIRST Frenzy robot details cover drivetrain, autonomous, sensors, special features, and name origin.",
+    bullets: [
+      "Drivetrain used CIM and FP motors with tank steering.",
+      "Autonomous could knock balls off the tee.",
+      "Used optical sensors, wheel encoders, and potentiometers.",
+      "Bike wheel mechanism helped reach the pull-up bar.",
+    ],
+    images: [],
+  },
+  2003: {
+    sourceTitle: "Robot_2003",
+    description: "Supplemental archive currently provides an image archive for the 2003 robot.",
+    bullets: [],
+    images: ["/images/robot_details/2003/robot2003-250x300.jpg"],
+  },
+  2002: {
+    sourceTitle: "Robot_2002",
+    description: "Supplemental archive currently provides an image archive for the 2002 robot.",
+    bullets: [],
+    images: ["/images/robot_details/2002/Robot2002-253x300.jpg"],
+  },
+};
+
 const robots = [
   {
     name: "Monkey D' Luffy",
@@ -10,6 +204,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2025],
   },
   {
     name: "Uptown Funk",
@@ -22,6 +217,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2024],
   },
   {
     name: "Cone Kong",
@@ -34,6 +230,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2023],
   },
   {
     name: "Furious George",
@@ -46,6 +243,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2022],
   },
   {
     name: "The Droid You're Looking For",
@@ -58,6 +256,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2020],
   },
   {
     name: "SpaceRex",
@@ -70,6 +269,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2019],
   },
   {
     name: "Wes",
@@ -82,6 +282,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2018],
   },
   {
     name: "Punk Monkey",
@@ -94,6 +295,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2017],
   },
   {
     name: "Monkey Python",
@@ -106,6 +308,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2016],
   },
   {
     name: "Junky Monkey",
@@ -118,6 +321,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2015],
   },
   {
     name: "Funk Cannon",
@@ -130,6 +334,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2014],
   },
   {
     name: "Ultimate Funky Object",
@@ -142,6 +347,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: null,
   },
   {
     name: "Tail of the Monkey",
@@ -154,6 +360,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2012],
   },
   {
     name: "Soccer Chipmbot Extreme",
@@ -166,6 +373,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2010],
   },
   {
     name: "Monkey",
@@ -178,6 +386,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2009],
   },
   {
     name: "Howler",
@@ -190,6 +399,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2008],
   },
   {
     name: "SpiderMonkey",
@@ -202,6 +412,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2007],
   },
   {
     name: "Escargo",
@@ -214,6 +425,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2006],
   },
   {
     name: "TetraBot",
@@ -226,6 +438,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2005],
   },
   {
     name: "BikeBot",
@@ -238,6 +451,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2004],
   },
   {
     name: "2003",
@@ -250,6 +464,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2003],
   },
   {
     name: "2002",
@@ -262,6 +477,7 @@ const robots = [
       autos: 2,
       overall: 4,
     },
+    details: robotDetails[2002],
   },
 ];
 
