@@ -1,0 +1,13 @@
+Robot data limitations
+
+Current website data is the source of truth for robot names and which robots are shown.
+The Lynbrook_Robotics_Details archive is treated as a supplemental detail source.
+
+Known differences:
+- 2011 exists in Lynbrook_Robotics_Details as "Hand of the Monkey", but the current website robot list does not include a 2011 card.
+- 2013 exists in the current website robot list as "Ultimate Funky Object", but Lynbrook_Robotics_Details does not include a 2013 detail record.
+- 2009 is named "Monkey" in the current website data and "Moonkey" in Lynbrook_Robotics_Details. The UI keeps the current website name.
+- 2010 is named "Soccer Chipmbot Extreme" in the current website data and "Soccer Chimpbot Extreme" in Lynbrook_Robotics_Details. The UI keeps the current website name.
+- Some 2017 and newer detail titles are archive/page titles, not necessarily robot display names, so they should not overwrite current robot names.
+- Some supplemental detail text contains encoding artifacts in the source archive. The UI uses cleaned summaries instead of raw copied text.
+- Several newer years provide image-only detail records. The modal may show a short archive summary instead of long technical text.
